@@ -298,7 +298,7 @@ class AdminController extends Controller
             return $this->refresh();
         }
 
-        return $this->render('_profile', [
+        return $this->render('profile', [
             'user'    => $user,
             'profile' => $profile,
         ]);
@@ -352,9 +352,9 @@ class AdminController extends Controller
         $event = $this->getUserEvent($user);
 
         $this->trigger(self::EVENT_BEFORE_IMPERSONATE, $event);
-        
+
         Yii::$app->user->switchIdentity($user, 3600);
-        
+
         $this->trigger(self::EVENT_AFTER_IMPERSONATE, $event);
 
         return $this->goHome();
